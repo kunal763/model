@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}Upload Image{% endblock title %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Centered form card -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-3">
+                <div class="card-body p-5">
+                    <h2 class="card-title text-center mb-4">Upload Your Image</h2>
+                    <!-- Form section -->
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ form.as_p }}
+                        </div>
+                        <button type="submit" class="btn btn-gradient-primary btn-lg w-100 text-uppercase">Upload Image</button>
+                        {% if object.image %}
+                        <a href="{%url 'processed'%}" class="mt-2 btn btn-gradient-primary btn-lg w-100 text-uppercase">See results</a>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image display section with fancy styling -->
+    
+</div>
+
+<!-- Custom CSS to enhance the page -->
+<style>
+    /* Button styling */
+    body{
+        background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+    }
+    .btn-gradient-primary {
+        background: linear-gradient(90deg, #ff7e5f, #feb47b);
+        color: white;
+        border: none;
+        transition: background 0.3s ease-in-out;
+    }
+    .btn-gradient-primary:hover {
+        background: linear-gradient(90deg, #feb47b, #ff7e5f);
+        color: white;
+    }
+
+    /* Hover zoom effect for images */
+    .hover-zoom {
+        transition: transform 0.3s ease;
+    }
+    .hover-zoom:hover {
+        transform: scale(1.1);
+    }
+
+    /* Shadow for form and image cards */
+    .card {
+        transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+</style>
+
+{% endblock content %}
